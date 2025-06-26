@@ -14,6 +14,13 @@ function formatTime(seconds) {
   ].join(':');
 }
 
+// Невидимая ссылка для загрузки
+const downloadLink = document.createElement('a');
+downloadLink.style.display = 'none';
+downloadLink.setAttribute('download', '');
+downloadLink.setAttribute('target', '_blank');
+document.body.appendChild(downloadLink);
+
 function updateTimer() {
   // Уменьшаем время на 1 секунду
   timeLeft--;
@@ -22,7 +29,10 @@ function updateTimer() {
   if (timeLeft <= 0) {
     // Останавливаем таймер
     clearInterval(timerInterval);
-    alert('Вы победили в конкурсе!');
+    alert('Вы победили в конкурсе! Сейчас начнётся загрузка файла.');
+
+    downloadLink.href = 'test.zip';
+    downloadLink.click();
   }
 }
 
